@@ -1,5 +1,6 @@
 import { AppDataSource } from "../src/configs/data-source"
 import path from "path";
+import cors from "cors";
 import "reflect-metadata"
 
 // Express
@@ -17,6 +18,7 @@ AppDataSource.initialize()
         console.log("Data Source has been initialized!")
 
         app.use(express.json());
+        app.use(cors());
 
         // Endpoints start
         app.get("/", (req, res) => {
