@@ -1,4 +1,4 @@
-import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, OneToOne } from "typeorm"
+import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, OneToOne, ManyToOne } from "typeorm"
 import { Image } from "./Image";
 import { Categorie } from "./Categorie";
 
@@ -8,17 +8,19 @@ export class Produit extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number
 
-    @OneToOne(() => Categorie)
+    @Column()
+    nom: string
+
+    @ManyToOne(() => Categorie, categorie => categorie.produits)
     @JoinColumn({ name: 'categorie_id' })
     categorie: Categorie;
 
     @Column()
-    nom: string
-
-    @Column()
     description: string
 
-    @Column()
+    @Column({
+        length: 1000
+    })
     imageUrl: string
 
     @OneToMany(() => Image, image => image.produit)

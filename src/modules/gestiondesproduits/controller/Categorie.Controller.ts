@@ -38,7 +38,7 @@ export const getCategorie = async (req: Request, res: Response) => {
 
     try {
 
-        const categorie = await categorieRepository.findOneBy({ id: parseInt(id) });
+        const categorie = await categorieRepository.findOne({relations: ["produits"] ,where: { id: parseInt(id) }});
 
         if (!categorie) {
             return res.status(400).json([])
@@ -56,7 +56,7 @@ export const getAllCategorie = async (req: Request, res: Response) => {
 
     try {
 
-        const allCategorie = await categorieRepository.find();
+        const allCategorie = await categorieRepository.find({relations: ["produits"]}) ;
 
         if (allCategorie.length === 0) {
             return res.status(400).json([]);
