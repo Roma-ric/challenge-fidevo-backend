@@ -38,7 +38,7 @@ export const getHero = async (req: Request, res: Response) => {
 
     try {
 
-        const hero = await heroRepository.findOneBy({ id: parseInt(id) });
+        const hero = await heroRepository.findOne({relations: ["image"] ,where: { id: parseInt(id) }});
 
         if (!hero) {
             return res.status(400).json([])
@@ -56,7 +56,7 @@ export const getAllHero = async (req: Request, res: Response) => {
 
     try {
 
-        const allHero = await heroRepository.find();
+        const allHero = await heroRepository.find({relations: ["image"]});
 
         if (allHero.length === 0) {
             return res.status(400).json([]);

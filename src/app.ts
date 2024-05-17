@@ -8,6 +8,7 @@ const app = express();
 
 // Router
 import { ProduitRouter } from "./modules/gestiondesproduits/route/Produit.Route";
+import { CategorieRouter } from "./modules/gestiondesproduits/route/Categorie.Route";
 import { HeroRouter } from "./modules/gestiondesproduits/route/Hero.Route";
 import { ImageRouter } from "./modules/gestiondesproduits/route/Image.Route";
 
@@ -24,7 +25,8 @@ AppDataSource.initialize()
 
         app.use('/upload', express.static(path.join(__dirname, 'upload')));
         app.use('/produits', ProduitRouter);
-        app.use('/heros', ProduitRouter);
+        app.use('/heros', HeroRouter);
+        app.use('/categories', CategorieRouter);
         app.use('/images', ImageRouter);
         // Endpoints end
 

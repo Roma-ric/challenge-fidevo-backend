@@ -1,11 +1,16 @@
-import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from "typeorm"
+import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, OneToOne } from "typeorm"
 import { Image } from "./Image";
+import { Categorie } from "./Categorie";
 
 @Entity('Produit')
 export class Produit extends BaseEntity{
 
     @PrimaryGeneratedColumn()
     id: number
+
+    @OneToOne(() => Categorie)
+    @JoinColumn({ name: 'categorie_id' })
+    categorie: Categorie;
 
     @Column()
     nom: string
