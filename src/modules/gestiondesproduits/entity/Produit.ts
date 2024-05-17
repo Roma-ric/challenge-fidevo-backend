@@ -13,6 +13,9 @@ export class Produit extends BaseEntity{
     @Column()
     description: string
 
+    @Column()
+    imageUrl: string
+
     @OneToMany(() => Image, image => image.produit)
     images: Image[];
 
